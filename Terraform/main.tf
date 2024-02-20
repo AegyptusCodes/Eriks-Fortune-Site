@@ -13,17 +13,25 @@ resource "aws_instance" "test-fortune-site-ek-2024" {
   vpc_security_group_ids = [
     "sg-01acb22857952dfb1"
   ]
+  user_data = <<EOF
+#!/bin/bash
 
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x setup_script.sh",
-      "./setup_script.sh"
-    ]
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"  # or the appropriate username for your EC2 instance
-      private_key = file("/Users/erik/Downloads/Fortune-Site-EK-2024.cer")
-      host        = self.public_ip  # Use the public IP of the instance
-    }
-  }
+sudo apt update -y
+
+sudo apt install git -y
+
+sudo apt install npm -y
+
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+git clone https://github.com/AegyptusCodes/Eriks-Fortune-Site.git
+cd Eriks-Fortune-Site
+
+npm install
+
+npm start
+
+  EOF
+
 }
