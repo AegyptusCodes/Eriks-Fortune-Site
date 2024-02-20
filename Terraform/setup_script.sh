@@ -6,7 +6,7 @@ sudo apt-get install -y nodejs
 
 # Clone GitHub repository
 git clone https://github.com/AegyptusCodes/Eriks-Fortune-Site.git
-cd Eriks-Fortune-Site
+cd Eriks-Fortune-Site/Terraform
 
 # Install application dependencies
 npm install
