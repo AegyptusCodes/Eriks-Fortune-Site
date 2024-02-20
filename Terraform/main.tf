@@ -6,6 +6,7 @@ resource "aws_instance" "test-fortune-site-ek-2024" {
   ami           = "ami-0c7217cdde317cfec"
   instance_type = "t2.micro"
   key_name = "Fortune-Site-EK-2024"
+  iam_instance_profile = "fortune-site-role-dynamodb"
   count         = 1
   tags = {
     Name = "${var.prefix}-instance"
